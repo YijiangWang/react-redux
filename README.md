@@ -1,5 +1,6 @@
-### react-redux
-- 主要提供了两个强大的 api：Provider 和 connect
+### 这里主要有 react-redux 的使用，以及对应的类组件 API 实现与函数组件 API 实现。
+### react-redux 类组件 API
+- 主要提供了两个强大的 API：Provider 和 connect；
 ##### Provider
 - 为后代组件提供 store；
   ```js
@@ -30,6 +31,22 @@
 - pure = true，如果为 true，connector 将执行 shouldComponentUpdate 并且浅对比 mergeProps 的结果，避免不必要的更新。前提是当前组件是一个“纯组件”，不依赖于任何输入或 state 而只依赖于 props 和 Redux store 的 state。默认值为 true；
 - withRef = false，如果为 true，connector 会保存一个对被包装组件实例的引用，改引用通过 `getWrappedInstance()` 方法获得。默认值为 false。
 
+### react-redux Hooks API
+- 主要有三个 API：useSelector、useDispatch 和 useStore；
+
+##### useSelector 获取 store state
+  ```js
+    const count = useSelector(state => state.count);
+  ```
+##### useDispatch 获取 dispatch
+  ```js
+    const dispatch = useDispatch();
+  ```
+##### useStore 获取 store
+  ```js
+    const store = useStore();
+  ```
+
 ### 首先先学习一下函数组件中的所有的 Hooks API
 ##### useState
 - `const [state, setState] = useState(init);`
@@ -52,14 +69,34 @@
 - 尽可能使用标准的 useEffect 以避免阻塞视觉更新；
 - 在 DOM 更新的同时需要订阅的一些操作，就需要使用这个 API；
 
-### Provider 和 connect 实现
-
-### Hooks API
-- useSelector 获取 store state
-  ```js
-    const count = useSelector(state => state.count);
-  ```
-- useDispatch 获取 dispatch
-  ```js
-    const dispatch = useDispatch();
-  ```
+### 项目目录结构
+```txt
+|-- public 公共资源文件
+|-- src
+    |-- index.js 入口文件
+    |-- pages
+        |-- HooksPage.js Hooks API 的使用
+        |-- ReactReduxHookPage.js：react-redux Hooks API 的使用
+        |-- ReactReduxPage：react-redux 类组件方法的使用
+        |-- YJReactReduxHookPage.js yj-react-redux Hooks API 的使用（可以与 ReactReduxHookPage 中的 Hooks 使用方法进行比较）
+        |-- YJReactReduxPage.js yj-react-redux 类组件 API 的使用（可以与 ReactReduxPage 中的 API 使用方法进行比较）
+    |-- store
+        |-- 通过 redux 创建的 store
+        |-- 通过 yj-redux 创建的 store
+    |-- utils
+        |-- 项目中遇到的一些工具方法
+    |-- yj-react-redux
+        |-- bindActionCreators 实现
+        |-- connect react-redux 中的 connect 实现
+        |-- Context 创建上下文
+        |-- forceUpdate.js 自定义 Hook，实现函数组件中的 forceUpdate
+        |-- Provider 类组件中的 Provider 实现
+        |-- useDispatch react-redux 中 Hooks API useDispatch 的实现
+        |-- useSelector react-redux 中 Hooks API useSelector 的实现
+        |-- useStore react-redux 中 Hooks API useStore 的实现
+    |-- yj-redux 同 [redux](https://github.com/YijiangWang/redux)
+```
+### 源码实现学习代码
+- 拉完代码之后 `npm install`;
+- 运行项目：`yarn start`;
+- 底下就可以进行调试、学习、实现了。
