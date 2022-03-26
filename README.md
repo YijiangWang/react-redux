@@ -16,11 +16,11 @@
 - 是一个函数；
 - 该回调函数会返回一个纯对象，这个对象会与组件的 props 合并；
 - 如果定义该参数，组件将会监听 Redux store 的变化，否则不监听；
-- ownProps 是当前组件自身的 props，如果指定了，那么只要组件接收到新的 props，mapStateToProps 就会被调用，被重新计算，mapDispatchToProps 也会被调用，需要注意性能。
+- ownProps 是当前组件自身的 props，如果指定了，那么只要组件接收到新的 props，mapStateToProps 就会被调用，被重新计算；mapDispatchToProps 也会被调用，需要注意性能。
 ###### mapDispatchToProps(dispatch, [ownProps])：dispatchProps
 - 是一个 Object 或者 Function；
 - 如果省略 mapDispatchToProps，默认情况下，会将 dispatch 注入到组件 props 中；
-- 如果传递的是一个对象，那么每个定义在该对象的函数都将被当作 Redux action creator，对象所定义的方法名将作为属性名；每个方法将返回一个新的函数，函数中 dispatch 方法会将 action creator 的返回值当作参数执行。这些属性会被合并到组件的 props 中；
+- 如果传递的是一个对象，那么每个定义在该对象中的函数都将被当作 Redux action creator，对象所定义的方法名将作为属性名；每个方法将返回一个新的函数，函数中 dispatch 方法会将 action creator 的返回值当作参数执行。这些属性会被合并到组件的 props 中；
 - 如果传递的是一个函数，该函数将接收一个 dispatch 函数，然后由你来决定如何返回一个对象，这个对象通过 dispatch 函数与 action creator 以某种方式绑定在一起（提示：可能会用到 Redux 的辅助函数 bindActionCreators()）；
 - ownProps 的作用与影响同 mapStateToProps。
 ###### mergeProps(stateProps, dispatchProps, ownProps)
